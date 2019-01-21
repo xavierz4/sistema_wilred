@@ -17,32 +17,99 @@
 
        echo '<link rel="icon" href="http://localhost/wilredbk/'.$icono["icono"].'">'; 
 
+    //    URL AMIGABLES: respuesta
+
+       $url = Ruta::ctrRuta();
+
+    // END-URL AMIGABLES 
+
     ?>
 
-    <link rel="stylesheet" href="vistas/css/plugins/bootstrap.min.css">
-    <link rel="stylesheet" href="vistas/css/template.css">
-    <link rel="stylesheet" href="vistas/css/header.css">
-    <link rel="stylesheet" href="vistas/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/template.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/header.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/slide.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/font-awesome.min.css">
     
-    <script src="vistas/js/plugins/jquery.min.js"></script>
-    
-    <script src="vistas/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/bootstrap.min.css">
 
 </head>
 <body>
 
     <?php
 
-    //    HEADER
+    ///// HEADER//////
 
             include "modulos/header.php";
             
-      
+           
+            //// CONTENIDO DINAMICO///////
+           
+            $rutas = array();
+            $ruta = null;
+            
+            if(isset($_GET["ruta"])){
+            
+                $rutas = explode("/", $_GET["ruta"]);
+            
+                $item = "ruta";
+                $valor =  $rutas[0];
+            
+                /*=============================================
+                URL'S AMIGABLES DE CATEGORÍAS
+                =============================================*/
+            
+                $rutaCategorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
+            
+                if($rutas[0] == $rutaCategorias["ruta"]){
+            
+                    $ruta = $rutas[0];
+            
+                }
+            
+                /*=============================================
+                URL'S AMIGABLES DE SUBCATEGORÍAS
+                =============================================*/
+            
+                $rutaSubCategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+            
+                foreach ($rutaSubCategorias as $key => $value) {
+                    
+                    if($rutas[0] == $value["ruta"]){
+            
+                        $ruta = $rutas[0];
+            
+                    }
+            
+                }
 
+                /*=============================================
+                LISTA BLANCA DE URL'S AMIGABLES
+                =============================================*/
+            
+                if($ruta != null){
+            
+                    include "modulos/productos.php";
+            
+                }else{
+            
+                    include "modulos/error404.php";
+            
+                }
+
+                }else{
+
+                    include "modulos/slide.php";
+            
+            }
+          
     ?>
     
-    <script src="vistas/js/header.js"></script>
-    <script src="vistas/js/plantilla.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/header.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/plantilla.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/slide.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
     
-</body>
 </html>

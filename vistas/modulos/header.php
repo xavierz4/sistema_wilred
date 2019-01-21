@@ -46,7 +46,7 @@
              <!--SELECTOR IDIOMA -->
              <div class="idioma">
 
-                <div class="form-group col-lg-1 col-md-2 col-sm-2 col-xs-12 pull-left">
+                <div class="form-group col-lg-1 col-md-2 col-sm-2 col-xs-6 pull-left">
                     <select class="form-control" id="sel1">
                         <option value="español">Español</option>
                         <option value="ingles">English</option>
@@ -58,8 +58,8 @@
 
               <!--PERFIL -->
              <div class="perfil col-lg-1 col-md-1 col-sm-2 col-xs-12">
-                <a href="">
-                    <i class="fa fa-circle"></i>
+                <a href="#">
+                 <button type="button" class="btn btn-primary btn-circle">Js</button>
                 </a>
                 
             </div>
@@ -76,16 +76,18 @@
 
         <div class="row">
 
-            <!-- LOGOTIPO -->
+            <!-- LOGOTIPO
 
-            <div class="col-lg-2 col-md-3 col-sm-2 col-xs-12" id="logotipo">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" id="logotipo">
 
                 <a href="#">
                     <img src="http://localhost/wilredbk/<?php echo $social["logo"] ?>" class="img-responsive" alt="Logotipo Wilred">
                 </a>
 
-            </div><!-- END-LOGOTIPO -->
-                
+            </div> END-LOGOTIPO -->
+
+            <div class="hero col-lg-10 col-md-3 col-sm-2 col-xs-12"></div>
+            
         </div>
 
 </div><!--END-HEADER -->
@@ -162,37 +164,41 @@
              <div class="col-xs-12 backColor" id="categorias">
 
                 <?php
-                    
-                    $categorias = ControladorProductos::ctrMostrarCategorias();
-                    
-                    foreach ($categorias as $key => $value) {
 
-                        echo '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+				$item = null;
+				$valor = null;
 
-                        <h4>
-                            <a href="'.$value["ruta"].'" class="categorias"> '.$value["categoria"].'</a>
-                            
-                        </h4>
+				$categorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
 
-                        <hr>
+				foreach ($categorias as $key => $value) {
 
-                        <ul>';
+					echo '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+							
+							<h4>
+								<a href="'.$value["ruta"].'" class="pixelCategorias">'.$value["categoria"].'</a>
+							</h4>
+							
+							<hr>
 
-                        $subcategorias = ControladorProductos::ctrMostrarSubCategorias($value["id"]);
+							<ul>';
 
-                        foreach ($subcategorias as $key => $value) {
-                            echo '<li><a href=""><span class="subcategorias">'.$value["subcategoria"].'</span></a></li>';  
+							$item = "id_categoria";
 
-                        }
-                        echo '</ul>
-        
-                        </div>';
-                       
-                    }
+							$valor = $value["id"];
 
-                   
-                    
-                ?>
+							$subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+							
+							foreach ($subcategorias as $key => $value) {
+									
+									echo '<li><a href="'.$value["ruta"].'" class="pixelSubCategorias">'.$value["subcategoria"].'</a></li>';
+								}	
+								
+							echo '</ul>
+
+						</div>';
+				}
+
+			?>	
 
              
 
