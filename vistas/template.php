@@ -7,34 +7,54 @@
     <meta name="title" content="Fundación Wilred">
     <meta name="description" content = "Fundación Social para el Desarrollo Integral Wilred">
     <meta name="keyboard" content="wilred, fundacion, social, niños, jovenes, vulnerables, riohacha, la guajira, colombia">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,900" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,900">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Ubuntu:300,400" rel="stylesheet">
     
     <title>Fundación Wilred</title>
 
     <?php
 
+        $servidor = Ruta::ctrRutaServidor(); 
         $icono = ControladorPlantilla::ctrEstilosPlantilla();
 
-       echo '<link rel="icon" href="http://localhost/wilredbk/'.$icono["icono"].'">'; 
+       echo '<link rel="icon" href="'.$servidor.$icono["icono"].'">'; 
 
-    //    URL AMIGABLES: respuesta
+    // URL AMIGABLES: respuesta
 
-       $url = Ruta::ctrRuta();
-
+       $url = Ruta::ctrRuta();          
     // END-URL AMIGABLES 
 
     ?>
 
+
+    <!-- PLUGINS CSS -->
     <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/template.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/header.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/slide.css">
+    
     <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/font-awesome.min.css">
     
+    
+
+    <!-- HOJAS DE ESTILO PARA MODULOS -->
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/template.css">
+
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/header.css">
+
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/slide.css">
+
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/productos.css">    
+    <!-- END-HOJAS DE ESTILO PARA MODULOS -->
+
+
+    <!-- PLUGINS JAVASCRIPT -->
+
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
-    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/bootstrap.min.css">
+    <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
+    <!--END- PLUGINS -->
+
 
 </head>
+
 <body>
 
     <?php
@@ -101,15 +121,18 @@
                 }else{
 
                     include "modulos/slide.php";
+                    include "modulos/destacados.php";
             
             }
           
     ?>
-    
+
+    <!-- JAVASCRIPT MODULOS -->
+
     <script src="<?php echo $url; ?>vistas/js/header.js"></script>
     <script src="<?php echo $url; ?>vistas/js/plantilla.js"></script>
     <script src="<?php echo $url; ?>vistas/js/slide.js"></script>
-    <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
+     <!--END- JAVASCRIPT MODULOS -->
+    
     
 </html>
