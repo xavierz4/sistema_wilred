@@ -8,4 +8,10 @@ class Ruta{
 	
 	}
 
+	public function ctrRutaServidor(){
+
+		return "http://localhost/wilredbk/";
+	
+	}
+
 }
