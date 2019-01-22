@@ -1,120 +1,59 @@
 <!-- SLIDE -->
 
+<?php
+        $servidor = Ruta::ctrRutaServidor(); 
+ ?>   
+
 <div class="container-fluid" id="slide">
 
     <div class="row">
 
     <ul>
 
-     <?php
+        <?php
 
-        $slide = ControladorSlide::ctrMostrarSlide();
-        var_dump($slide);
-     ?>
+            $slide = ControladorSlide::ctrMostrarSlide();
+
+            foreach ($slide as $key => $value) {
+                
+                $estiloImgProducto = json_decode($value["estiloImgProducto"], true);
+                $estiloTextoSlide = json_decode($value["estiloTextoSlide"], true);
+                $titulo1 = json_decode($value["titulo1"], true);
+                $titulo2 = json_decode($value["titulo2"], true);
+                $titulo3 = json_decode($value["titulo3"], true);
+                
+                echo ' <li>
+                                <img src="'.$servidor.$value["imgFondo"].'" alt="">
+                                
+                                <div class="slideOpciones '.$value["tipoSlide"].'">
+
+                                    <img src="'.$servidor.$value["imgProducto"].'" alt="" class="imgProducto" style="top:'.$estiloImgProducto["top"].'; left:'.$estiloImgProducto["left"].'; width:'.$estiloImgProducto["width"].'; right:'.$estiloImgProducto["right"].'">
+
+                                    <div class="textoSlide" style="top:'.$estiloTextoSlide["top"].'; left:'.$estiloTextoSlide["left"].'; width:'.$estiloTextoSlide["width"].'; right:'.$estiloTextoSlide["right"].'">
+                                       
+                                        <h1 style="color:'.$titulo1["color"].'">'.$titulo1["texto"].'</h1>
+                                        
+                                        <h2 style="color:'.$titulo2["color"].'">'.$titulo2["texto"].'</h2>
+                                        
+                                        <h3 style="color:'.$titulo3["color"].'">'.$titulo3["texto"].'</h3>
+
+                                        <a href="'.$value["url"].'">
+                                          
+                                                                                              
+                                                '.$value["verProducto"].'
+                                       
+                                        <a/>    
+                                       
+                                    </div>
+                                </div>
+                            
+                            </li>';
+
+                }
+
+        ?>
     
     
-      <li>
-            <img src="http://localhost/wilredbk/vistas/img/slide/default/back_default.jpg" alt="">
-            
-            <div class="slideOpciones slideOpcion1">
-
-                <img src="http://localhost/wilredbk/vistas/img/slide/slide1/zapatos.png" alt="" class="imgProducto" style="top:25%; right:5%; width:40%">
-
-                <div class="textoSlide" style="top:20%; left:10%; width:40%">
-                    <h1 style="color:#eee">Titulo Slide</h1>
-                    <h2 style="color:#ccc">Mensaje Ancla</h2>
-                    <h3 style="color:#aaa">Lorem</h3>
-
-                    <a href="#">
-                        <button class="btn btn-default backColor">
-
-                            Ver Producto <span class="fa fa-chevron-right"></span>
-
-                        
-                        </button>
-                    </a>
-                </div>
-            </div>
-           
-        </li>
-
-        <!-- OPCION 2 -->
-        
-        <li>
-            <img src="http://localhost/wilredbk/vistas/img/slide/default/back_default.jpg" alt="">
-            
-            <div class="slideOpciones slideOpcion2">
-
-                <img src="http://localhost/wilredbk/vistas/img/slide/slide2/zapatos2.png" alt="" class="imgProducto" style="top:10%; left:5%; width:35%">
-
-                <div class="textoSlide" style="top:20%; right:5%; width:40%">
-                    <h1 style="color:#eee">Titulo2 Slide</h1>
-                    <h2 style="color:#ccc">Mensaje Ancla</h2>
-                    <h3 style="color:#aaa">Lorem</h3>
-                    <a href="#">
-                        <button class="btn btn-default backColor">
-
-                            Ver Producto <span class="fa fa-chevron-right"></span>
-
-                        
-                        </button>
-                    </a>
-                </div>
-            </div>
-           
-        </li> 
-
-        <!-- OPCION3 -->
-
-        <li>
-            <img src="http://localhost/wilredbk/vistas/img/slide/slide3/fondo.jpg" alt="">
-            
-            <div class="slideOpciones slideOpcion1">
-
-                <img src="" alt="" class="imgProducto">
-
-                <div class="textoSlide"style="top:20%; left:10%; width:40%">
-                    <h1 style="color:#eee">Titulo2 Slide</h1>
-                    <h2 style="color:#ccc">Mensaje Ancla</h2>
-                    <h3 style="color:#aaa">Lorem</h3>
-                    <a href="#">
-                        <button class="btn btn-default backColor">
-
-                            Ver Producto <span class="fa fa-chevron-right"></span>
-
-                        
-                        </button>
-                    </a>
-                </div>
-            </div>
-           
-        </li> 
-
-          <!-- OPCION4 -->
-
-          <li>
-            <img src="http://localhost/wilredbk/vistas/img/slide/slide4/kids-wayuu-00004.jpg" alt="">
-            
-            <div class="slideOpciones slideOpcion1">
-
-                <img src="" alt="" class="imgProducto">
-
-                <div class="textoSlide"style="top:20%; left:10%; width:40%">
-                    <h1 style="color:#eee">Titulo2 Slide</h1>
-                    <h2 style="color:#ccc">Mensaje Ancla</h2>
-                    <h3 style="color:#aaa">Lorem</h3>
-                    <a href="#">
-                        <button class="btn btn-default backColor">
-
-                            Ver Producto <span class="fa fa-chevron-right"></span>
-
-                        
-                        </button>
-                    </a>
-                </div>
-            </div>
-           
-        </li> 
 
     </ul>
     
